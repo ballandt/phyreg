@@ -1,4 +1,13 @@
-from numpy import array, max, mean
+from numpy import array, max
+
+
+def weight_routine(points, weights):
+    if not weights:
+        weights = [1 for _ in range(len(points))]
+    elif isinstance(weights, list):
+        if len(points) != len(weights):
+            raise TypeError("Length of points and weights does not match.")
+    return weights
 
 
 def reversed_err(p, ex_f):
