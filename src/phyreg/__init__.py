@@ -3,7 +3,7 @@
 Python package for regressions of experimental data of important
 physical processes.
 """
-from .core import proportional, ffall, weights as weights_mod
+from .core import proportional, ffall, capacitor, weights as weights_mod
 
 
 __author__ = "Camillo Ballandt"
@@ -57,4 +57,9 @@ def free_fall(points: list, weights=[], *b) -> list:
         return [ffall.fixed_b(points, weights, b), b]
 
 
-del proportional, ffall, weights_mod
+def cap_exp(points: list, steps=50):
+    """Regression of exponential function
+    y = a*e^bx + c
+    Non-linear regression
+    """
+    return capacitor.charge(points, [-points[-1][1], -0.5, points[-1][1]], steps)
